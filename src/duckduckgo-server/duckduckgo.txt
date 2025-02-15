@@ -1,0 +1,704 @@
+
+<body cz-shortcut-listen="true">
+<p class="extra">&nbsp;</p>
+<div class="header">DuckDuckGo</div>
+<p class="extra">&nbsp;</p>
+
+<form action="/lite/" method="post">
+  <input class="query" type="text" size="40" name="q" value="My Query String">
+  <input class="submit" type="submit" value="Search">
+
+
+
+
+
+<div class="filters">
+
+<select class="submit" name="kl">
+
+  <option value="">All Regions</option>
+
+  <option value="ar-es">Argentina</option>
+
+  <option value="au-en">Australia</option>
+
+  <option value="at-de">Austria</option>
+
+  <option value="be-fr">Belgium (fr)</option>
+
+  <option value="be-nl">Belgium (nl)</option>
+
+  <option value="br-pt">Brazil</option>
+
+  <option value="bg-bg">Bulgaria</option>
+
+  <option value="ca-en">Canada (en)</option>
+
+  <option value="ca-fr">Canada (fr)</option>
+
+  <option value="ct-ca">Catalonia</option>
+
+  <option value="cl-es">Chile</option>
+
+  <option value="cn-zh">China</option>
+
+  <option value="co-es">Colombia</option>
+
+  <option value="hr-hr">Croatia</option>
+
+  <option value="cz-cs">Czech Republic</option>
+
+  <option value="dk-da">Denmark</option>
+
+  <option value="ee-et">Estonia</option>
+
+  <option value="fi-fi">Finland</option>
+
+  <option value="fr-fr">France</option>
+
+  <option value="de-de">Germany</option>
+
+  <option value="gr-el">Greece</option>
+
+  <option value="hk-tzh">Hong Kong</option>
+
+  <option value="hu-hu">Hungary</option>
+
+  <option value="is-is">Iceland</option>
+
+  <option value="in-en">India (en)</option>
+
+  <option value="id-en">Indonesia (en)</option>
+
+  <option value="ie-en">Ireland</option>
+
+  <option value="il-en">Israel (en)</option>
+
+  <option value="it-it">Italy</option>
+
+  <option value="jp-jp">Japan</option>
+
+  <option value="kr-kr">Korea</option>
+
+  <option value="lv-lv">Latvia</option>
+
+  <option value="lt-lt">Lithuania</option>
+
+  <option value="my-en">Malaysia (en)</option>
+
+  <option value="mx-es">Mexico</option>
+
+  <option value="nl-nl">Netherlands</option>
+
+  <option value="nz-en">New Zealand</option>
+
+  <option value="no-no">Norway</option>
+
+  <option value="pk-en">Pakistan (en)</option>
+
+  <option value="pe-es">Peru</option>
+
+  <option value="ph-en">Philippines (en)</option>
+
+  <option value="pl-pl">Poland</option>
+
+  <option value="pt-pt">Portugal</option>
+
+  <option value="ro-ro">Romania</option>
+
+  <option value="ru-ru">Russia</option>
+
+  <option value="xa-ar">Saudi Arabia</option>
+
+  <option value="sg-en">Singapore</option>
+
+  <option value="sk-sk">Slovakia</option>
+
+  <option value="sl-sl">Slovenia</option>
+
+  <option value="za-en">South Africa</option>
+
+  <option value="es-ca">Spain (ca)</option>
+
+  <option value="es-es">Spain (es)</option>
+
+  <option value="se-sv">Sweden</option>
+
+  <option value="ch-de">Switzerland (de)</option>
+
+  <option value="ch-fr">Switzerland (fr)</option>
+
+  <option value="tw-tzh">Taiwan</option>
+
+  <option value="th-en">Thailand (en)</option>
+
+  <option value="tr-tr">Turkey</option>
+
+  <option value="us-en">US (English)</option>
+
+  <option value="us-es">US (Spanish)</option>
+
+  <option value="ua-uk">Ukraine</option>
+
+  <option value="uk-en">United Kingdom</option>
+
+  <option value="vn-en">Vietnam (en)</option>
+
+</select>
+
+<select class="submit" name="df">
+
+  <option value="" selected="">Any Time</option>
+
+  <option value="d">Past Day</option>
+
+  <option value="w">Past Week</option>
+
+  <option value="m">Past Month</option>
+
+  <option value="y">Past Year</option>
+
+</select>
+
+
+
+
+  <p class="extra">&nbsp;</p>
+    <table border="0"><tbody><tr>
+    <td>
+      
+    </td>
+    <td>
+      
+        <form action="/lite/" method="post">
+          <!-- <a rel="next" href="/lite/?q=My+Query+String&amp;v=l&amp;l=wt-wt&amp;p=&amp;s=10&amp;ex=-1&amp;o=json&amp;ct=TW&amp;sp=0&amp;vqd=4-180800099429325975277001591424339017300&amp;host_region=ase&amp;dp=il5f3YFs0mnLalDP_qoRmngbW57pCewjFWXgStaawTF5OhefV-IRJMJoU-Rw2XR5HdCJWafdl2pmKbUmdYC54uVW__Qed9rb52Dip9vROjmIEkzir4uG72d5zaZjmKNG.k1N5-omImVx2GGXqbs50Pw&amp;dc=11&amp;api=%2Fd.js">Next Page &gt;</a> //-->
+          <input type="submit" class="navbutton" value="Next Page >">
+          <input type="hidden" name="q" value="My Query String">
+          <input type="hidden" name="s" value="10">
+          <input type="hidden" name="nextParams" value="">
+          <input type="hidden" name="v" value="l">
+          <input type="hidden" name="o" value="json">
+          <input type="hidden" name="dc" value="11">
+          <input type="hidden" name="api" value="d.js">
+          <input type="hidden" name="vqd" value="4-180800099429325975277001591424339017300">
+          
+          
+          
+          <input name="kl" value="wt-wt" type="hidden">
+          
+          
+          
+          
+        </form>
+      
+    </td>
+    </tr></tbody></table>
+
+
+
+
+<p class="extra">&nbsp;</p>
+
+<table border="0">
+
+</table>
+
+<table border="0">
+
+<!-- Web results are present -->
+
+
+
+
+
+ <tbody><tr>
+
+    <td valign="top">1.&nbsp;</td>
+    <td>
+
+    
+        <a rel="nofollow" href="https://stackoverflow.com/questions/2602252/mysql-query-string-contains" class="result-link">sql - MySQL query String contains - Stack Overflow</a>
+    
+    </td>
+  </tr>
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td class="result-snippet">
+      This will only work if your using a prepared <b>query</b>. If you're using an actual <b>string</b> in there (ex. liquibase sql upgrade script) then consider INSTR mentioned below). This is because if your <b>string</b> contains a % then you'll start matching things with it to. -
+    </td>
+  </tr>
+  
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td>
+      <span class="link-text">stackoverflow.com/questions/2602252/mysql-query-string-contains</span>
+      
+    </td>
+  </tr>
+  
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+
+
+
+
+
+
+
+
+
+ <tr>
+
+    <td valign="top">2.&nbsp;</td>
+    <td>
+
+    
+        <a rel="nofollow" href="https://www.delftstack.com/howto/mysql/mysql-string-contains/" class="result-link">How to Check if String Contains Certain Data in MySQL</a>
+    
+    </td>
+  </tr>
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td class="result-snippet">
+      Where: <b>string</b>: The target <b>string</b> in which you want to find the substring.; substring: The substring you want to search for.; The function returns the index value of the first occurrence of the substring in the <b>string</b>. If the substring is not found, it returns 0.. Implement SELECT With INSTR() for <b>String</b> Occurrence <b>Query</b>. Building upon the previous example with the products table and the ...
+    </td>
+  </tr>
+  
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td>
+      <span class="link-text">www.delftstack.com/howto/mysql/mysql-string-contains/</span>
+      
+    </td>
+  </tr>
+  
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+
+
+
+
+
+
+
+
+
+ <tr>
+
+    <td valign="top">3.&nbsp;</td>
+    <td>
+
+    
+        <a rel="nofollow" href="https://www.w3schools.com/asp/coll_querystring.asp" class="result-link">ASP QueryString Collection - W3Schools</a>
+    
+    </td>
+  </tr>
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td class="result-snippet">
+      <b>Query</b> <b>strings</b> are also generated by form submission, or by a user typing a <b>query</b> into the address bar of the browser. Note: If you want to send large amounts of data (beyond 100 kb) the Request.<b>QueryString</b> cannot be used.
+    </td>
+  </tr>
+  
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td>
+      <span class="link-text">www.w3schools.com/asp/coll_querystring.asp</span>
+      
+    </td>
+  </tr>
+  
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+
+
+
+
+
+
+
+
+
+ <tr>
+
+    <td valign="top">4.&nbsp;</td>
+    <td>
+
+    
+        <a rel="nofollow" href="https://www.squash.io/how-to-use-mysql-query-string-contains/" class="result-link">How to Use MySQL Query String Contains - Squash</a>
+    
+    </td>
+  </tr>
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td class="result-snippet">
+      To utilize the MySQL <b>query</b> <b>string</b> contains functionality, you can use the LIKE operator in combination with the % wildcard character. This allows you to search for a specific <b>string</b> within a column of a table. Here are two possible approaches to using the MySQL <b>query</b> <b>string</b> contains: Approach 1: Using the LIKE Operator
+    </td>
+  </tr>
+  
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td>
+      <span class="link-text">www.squash.io/how-to-use-mysql-query-string-contains/</span>
+      
+    </td>
+  </tr>
+  
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+
+
+
+
+
+
+
+
+
+ <tr>
+
+    <td valign="top">5.&nbsp;</td>
+    <td>
+
+    
+        <a rel="nofollow" href="https://www.w3schools.com/SQl/func_mysql_substring.asp" class="result-link">MySQL SUBSTRING() Function - W3Schools</a>
+    
+    </td>
+  </tr>
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td class="result-snippet">
+      If it is a negative number, this function extracts from the end of the <b>string</b>. The position of the first character in the <b>string</b> is 1 and the position of the last character in the <b>string</b> is -1: length: Optional. The number of characters to extract. If omitted, the whole <b>string</b> will be returned (from the start position)
+    </td>
+  </tr>
+  
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td>
+      <span class="link-text">www.w3schools.com/SQl/func_mysql_substring.asp</span>
+      
+    </td>
+  </tr>
+  
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+
+
+
+
+
+
+
+
+
+ <tr>
+
+    <td valign="top">6.&nbsp;</td>
+    <td>
+
+    
+        <a rel="nofollow" href="https://www.slingacademy.com/article/mysql-8-how-to-search-for-a-string-in-all-tables-of-a-database/" class="result-link">MySQL 8: How to search for a string in all tables of a database</a>
+    
+    </td>
+  </tr>
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td class="result-snippet">
+      This SQL script generates another SQL <b>query</b> that checks for the 'search_string' within every varchar, text, and char column within all tables in 'your_database_name'. Notice how we select only <b>string</b>-type columns because searching other column types for a text-based <b>string</b> is not sensible. Creating and Executing a Stored Procedure
+    </td>
+  </tr>
+  
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td>
+      <span class="link-text">www.slingacademy.com/article/mysql-8-how-to-search-for-a-string-in-all-tables-of-a-database/</span>
+      
+    </td>
+  </tr>
+  
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+
+
+
+
+
+
+
+
+
+ <tr>
+
+    <td valign="top">7.&nbsp;</td>
+    <td>
+
+    
+        <a rel="nofollow" href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html" class="result-link">14.8 String Functions and Operators - MySQL</a>
+    
+    </td>
+  </tr>
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td class="result-snippet">
+      <b>String</b>-valued functions return NULL if the length of the result would be greater than the value of the max_allowed_packet system variable. See Section 7.1.1, "Configuring the Server".. For functions that operate on <b>string</b> positions, the first position is numbered 1. For functions that take length arguments, noninteger arguments are rounded to the nearest integer.
+    </td>
+  </tr>
+  
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td>
+      <span class="link-text">dev.mysql.com/doc/refman/8.0/en/string-functions.html</span>
+      
+    </td>
+  </tr>
+  
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+
+
+
+
+
+
+
+
+
+ <tr>
+
+    <td valign="top">8.&nbsp;</td>
+    <td>
+
+    
+        <a rel="nofollow" href="https://www.geeksforgeeks.org/mysql-string-functions/" class="result-link">MySQL - String Functions - GeeksforGeeks</a>
+    
+    </td>
+  </tr>
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td class="result-snippet">
+      MySQL is one of the most widespread relational database management systems that covers many functions to manipulate the <b>strings</b> precisely. Processing text data in MySQL can go from a simple concatenation to pattern matching/substring extraction. In this article, we will be considering some commonly used MySQL <b>string</b> functions and their syntax, usage as well as examples.
+    </td>
+  </tr>
+  
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td>
+      <span class="link-text">www.geeksforgeeks.org/mysql-string-functions/</span>
+      
+    </td>
+  </tr>
+  
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+
+
+
+
+
+
+
+
+
+ <tr>
+
+    <td valign="top">9.&nbsp;</td>
+    <td>
+
+    
+        <a rel="nofollow" href="https://www.npmjs.com/package/query-string" class="result-link">query-string - npm</a>
+    
+    </td>
+  </tr>
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td class="result-snippet">
+      Stringify an object into a URL with a <b>query</b> <b>string</b> and sorting the keys. The inverse of .parseUrl() The options are the same as for .stringify(). Returns a <b>string</b> with the URL and a <b>query</b> <b>string</b>. <b>Query</b> items in the <b>query</b> property overrides queries in the url property. The fragmentIdentifier property overrides the fragment identifier in the url ...
+    </td>
+  </tr>
+  
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td>
+      <span class="link-text">www.npmjs.com/package/query-string</span>
+      
+    </td>
+  </tr>
+  
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+
+
+
+
+
+
+
+
+
+ <tr>
+
+    <td valign="top">10.&nbsp;</td>
+    <td>
+
+    
+        <a rel="nofollow" href="https://en.wikipedia.org/wiki/Query_string" class="result-link">Query string - Wikipedia</a>
+    
+    </td>
+  </tr>
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td class="result-snippet">
+      A <b>query</b> <b>string</b> is a part of a uniform resource locator that assigns values to specified parameters. A <b>query</b> <b>string</b> commonly includes fields added to a base URL by a Web browser or other client application, for example as part of an HTML document, choosing the appearance of a page, or jumping to positions in multimedia content. ...
+    </td>
+  </tr>
+  
+
+  
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td>
+      <span class="link-text">en.wikipedia.org/wiki/Query_string</span>
+      
+    </td>
+  </tr>
+  
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+
+
+
+
+
+
+
+
+
+  
+    <tr>
+    <td colspan="2">
+      
+      
+        <form class="next_form" action="/lite/" method="post">
+          <!-- <a rel="next" href="/lite/?q=My+Query+String&amp;v=l&amp;l=wt-wt&amp;p=&amp;s=10&amp;ex=-1&amp;o=json&amp;ct=TW&amp;sp=0&amp;vqd=4-180800099429325975277001591424339017300&amp;host_region=ase&amp;dp=il5f3YFs0mnLalDP_qoRmngbW57pCewjFWXgStaawTF5OhefV-IRJMJoU-Rw2XR5HdCJWafdl2pmKbUmdYC54uVW__Qed9rb52Dip9vROjmIEkzir4uG72d5zaZjmKNG.k1N5-omImVx2GGXqbs50Pw&amp;dc=11&amp;api=%2Fd.js">Next Page &gt;</a> //-->
+          <input type="submit" class="navbutton" value="Next Page >">
+          <input type="hidden" name="q" value="My Query String">
+          <input type="hidden" name="s" value="10">
+          <input type="hidden" name="nextParams" value="">
+          <input type="hidden" name="v" value="l">
+          <input type="hidden" name="o" value="json">
+          <input type="hidden" name="dc" value="11">
+          <input type="hidden" name="api" value="d.js">
+          <input type="hidden" name="vqd" value="4-180800099429325975277001591424339017300">
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          
+          
+          
+          <input name="kl" value="wt-wt" type="hidden">
+          
+          
+          
+          
+        </form>
+      
+      
+    </td>
+  </tr>
+
+</tbody></table>
+
+<p class="extra">&nbsp;</p>
+
+<form action="/lite/" method="post">
+  <input class="query" type="text" size="40" name="q" value="My Query String">
+  <input class="submit" type="submit" value="Search">
+
+
+
+
+
+  <input name="kl" value="wt-wt" type="hidden">
+
+</form>
+
+<p class="extra">&nbsp;</p>
+
+<!--
+<a href="#top">Top</a>
+//-->
+
+
+  
+
+<div id="end-spacer">&nbsp;</div>
+
+
+
+</div></form></body>
