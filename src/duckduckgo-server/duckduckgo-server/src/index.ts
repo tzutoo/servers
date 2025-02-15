@@ -14,6 +14,17 @@ interface SearchResult {
   snippet?: string;
 }
 
+interface NextPageParams {
+  s: string;
+  nextParams: string;
+  v: string;
+  o: string;
+  dc: string;
+  api: string;
+  vqd: string;
+  kl: string;
+}
+
 const server = new Server(
   {
     name: "duckduckgo-search",
@@ -26,64 +37,93 @@ const server = new Server(
   }
 );
 
-async function searchDuckDuckGo(query: string): Promise<SearchResult[]> {
+async function searchDuckDuckGo(query: string, maxResults: number = 30): Promise<SearchResult[]> {
+  console.error('[DDG] Starting search for:', query);
+  const allResults = new Map<string, SearchResult>(); // Use Map to deduplicate by URL
+  let currentPage = 1;
+  let nextParams: Record<string, string> = {};
+
   try {
-    console.error('[DDG] Searching for:', query);
-    
-    const response = await axios.post(
-      'https://lite.duckduckgo.com/lite/',
-      new URLSearchParams({
+    while (allResults.size < maxResults) {
+      console.error(`[DDG] Fetching page ${currentPage}...`);
+      
+      // Prepare form data for the request
+      const formData = new URLSearchParams({
         'q': query,
-        'kl': 'us-en'
-      }).toString(),
-      {
+        'kl': 'us-en',
+        ...nextParams
+      });
+
+      const response = await axios.post('https://lite.duckduckgo.com/lite/', formData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
         }
-      }
-    );
-
-    const $ = cheerio.load(response.data);
-    const results: SearchResult[] = [];
-    
-    // Find all result rows (they start with a number followed by a period)
-    $('tr').each((_, row) => {
-      const $row = $(row);
-      const firstCell = $row.find('td').first().text().trim();
-      
-      // Check if this is a numbered result row
-      if (/^\d+\.$/.test(firstCell)) {
-        const resultLink = $row.find('a.result-link');
-        const title = resultLink.text().trim();
-        const url = resultLink.attr('href');
-        
-        // Get the next row for snippet
-        const snippetRow = $row.next('tr');
-        const snippet = snippetRow.find('td.result-snippet').text().trim();
-        
-        if (title && url) {
-          results.push({
-            title,
-            url,
-            snippet
-          });
-        }
-      }
-    });
-
-    console.error('[DDG] Found results:', results.length);
-    return results;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error('[DDG] Network error:', {
-        status: error.response?.status,
-        statusText: error.response?.statusText,
-        data: error.response?.data
       });
-    } else {
-      console.error('[DDG] Search failed:', error);
+
+      const $ = cheerio.load(response.data);
+      let foundNewResults = false;
+      
+      // Extract results from the current page
+      $('tr').each((_, row) => {
+        const $row = $(row);
+        const firstCell = $row.find('td').first().text().trim();
+        
+        // Check if this is a numbered result row
+        if (/^\d+\.$/.test(firstCell)) {
+          const $resultCell = $row.find('td').last();
+          const $link = $resultCell.find('a.result-link');
+          const title = $link.text().trim();
+          const url = $link.attr('href') || '';
+          
+          // Get the snippet from the next row
+          const snippetRow = $row.next('tr');
+          const snippet = snippetRow.find('td.result-snippet').text().trim();
+          
+          if (title && url && !allResults.has(url)) {
+            allResults.set(url, { title, url, snippet });
+            foundNewResults = true;
+          }
+        }
+      });
+
+      console.error(`[DDG] Found ${allResults.size} unique results so far`);
+      
+      // If we didn't find any new results on this page, or we have enough results, break
+      if (!foundNewResults || allResults.size >= maxResults) break;
+
+      // Extract next page parameters from the form
+      const nextForm = $('form.next_form, form[action="/lite/"]').last();
+      if (!nextForm.length) {
+        console.error('[DDG] No next page form found');
+        break;
+      }
+
+      // Get all hidden inputs for next page
+      nextParams = {};
+      nextForm.find('input[type="hidden"]').each((_, input) => {
+        const name = $(input).attr('name');
+        const value = $(input).val();
+        if (name && typeof value === 'string') {
+          nextParams[name] = value;
+        }
+      });
+
+      // Debug log the next page parameters
+      console.error('[DDG] Next page params:', nextParams);
+
+      if (!Object.keys(nextParams).length) {
+        console.error('[DDG] No next page parameters found');
+        break;
+      }
+
+      currentPage++;
     }
+
+    console.error(`[DDG] Search complete. Found ${allResults.size} unique results`);
+    return Array.from(allResults.values()).slice(0, maxResults);
+  } catch (error) {
+    console.error('[DDG] Search failed:', error);
     throw error;
   }
 }
@@ -98,6 +138,12 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         query: {
           type: "string",
           description: "Search query"
+        },
+        maxResults: {
+          type: "number",
+          description: "Maximum number of results to return (default: 30)",
+          minimum: 1,
+          maximum: 100
         }
       },
       required: ["query"]
@@ -114,13 +160,22 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     throw new Error("Invalid arguments");
   }
 
-  const { query } = request.params.arguments as { query?: unknown };
+  const { query, maxResults = 30 } = request.params.arguments as { 
+    query?: unknown;
+    maxResults?: unknown;
+  };
+
   if (typeof query !== "string") {
     throw new Error("Invalid query parameter");
   }
 
+  if (maxResults !== undefined && 
+      (typeof maxResults !== "number" || maxResults < 1 || maxResults > 100)) {
+    throw new Error("Invalid maxResults parameter (must be between 1 and 100)");
+  }
+
   try {
-    const results = await searchDuckDuckGo(query);
+    const results = await searchDuckDuckGo(query, maxResults);
     return {
       content: [{
         type: "text",
