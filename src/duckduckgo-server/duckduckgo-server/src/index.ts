@@ -14,17 +14,6 @@ interface SearchResult {
   snippet?: string;
 }
 
-interface NextPageParams {
-  s: string;
-  nextParams: string;
-  v: string;
-  o: string;
-  dc: string;
-  api: string;
-  vqd: string;
-  kl: string;
-}
-
 const server = new Server(
   {
     name: "duckduckgo-search",
@@ -39,91 +28,120 @@ const server = new Server(
 
 async function searchDuckDuckGo(query: string, maxResults: number = 30): Promise<SearchResult[]> {
   console.error('[DDG] Starting search for:', query);
-  const allResults = new Map<string, SearchResult>(); // Use Map to deduplicate by URL
-  let currentPage = 1;
-  let nextParams: Record<string, string> = {};
+  const allResults = new Map<string, SearchResult>();
+  let nextPageParams: Record<string, string> = {
+    q: query,
+    kl: 'us-en'
+  };
 
   try {
     while (allResults.size < maxResults) {
-      console.error(`[DDG] Fetching page ${currentPage}...`);
+      console.error('\n[DDG] Sending request with params:', nextPageParams);
       
-      // Prepare form data for the request
-      const formData = new URLSearchParams({
-        'q': query,
-        'kl': 'us-en',
-        ...nextParams
-      });
-
-      const response = await axios.post('https://lite.duckduckgo.com/lite/', formData, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
+      const response = await axios.post('https://lite.duckduckgo.com/lite/', 
+        new URLSearchParams(nextPageParams),
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
+          }
         }
-      });
+      );
+
+      console.error('\n[DDG] Response HTML:', response.data);
 
       const $ = cheerio.load(response.data);
       let foundNewResults = false;
-      
-      // Extract results from the current page
+
+      // Log all tr elements for debugging
+      console.error('\n[DDG] Found table rows:');
+      $('tr').each((i, row) => {
+        console.error(`Row ${i}:`, $(row).html());
+      });
+
+      // Process results table
       $('tr').each((_, row) => {
         const $row = $(row);
-        const firstCell = $row.find('td').first().text().trim();
-        
-        // Check if this is a numbered result row
-        if (/^\d+\.$/.test(firstCell)) {
-          const $resultCell = $row.find('td').last();
-          const $link = $resultCell.find('a.result-link');
+        const $firstCell = $row.find('td').first();
+        const firstCellText = $firstCell.text().trim();
+
+        console.error('\n[DDG] Processing row with first cell:', firstCellText);
+
+        // Check for numbered result rows (e.g., "1.", "2.", etc.)
+        if (/^\d+\.$/.test(firstCellText)) {
+          const $link = $row.find('a.result-link');
           const title = $link.text().trim();
-          const url = $link.attr('href') || '';
+          const url = $link.attr('href');
           
-          // Get the snippet from the next row
-          const snippetRow = $row.next('tr');
-          const snippet = snippetRow.find('td.result-snippet').text().trim();
-          
+          // Get snippet from the next row's result-snippet cell
+          const $snippetRow = $row.next('tr');
+          const snippet = $snippetRow.find('td.result-snippet').text().trim();
+
+          console.error('[DDG] Found potential result:', {
+            title,
+            url,
+            snippet: snippet.substring(0, 50) + '...'
+          });
+
           if (title && url && !allResults.has(url)) {
             allResults.set(url, { title, url, snippet });
             foundNewResults = true;
+            console.error('[DDG] Added result:', title);
           }
         }
       });
 
-      console.error(`[DDG] Found ${allResults.size} unique results so far`);
-      
-      // If we didn't find any new results on this page, or we have enough results, break
-      if (!foundNewResults || allResults.size >= maxResults) break;
+      console.error(`\n[DDG] Found ${allResults.size} total results`);
 
-      // Extract next page parameters from the form
-      const nextForm = $('form.next_form, form[action="/lite/"]').last();
-      if (!nextForm.length) {
+      if (!foundNewResults || allResults.size >= maxResults) {
+        console.error('[DDG] No new results or reached max results');
+        break;
+      }
+
+      // Find next page form and extract navigation parameters
+      const nextForms = $('form');
+      console.error('\n[DDG] Found forms:', nextForms.length);
+      nextForms.each((i, form) => {
+        console.error(`Form ${i}:`, $(form).html());
+      });
+
+      // Look specifically for the next page form
+      const $nextForm = $('form:has(input.navbutton[value="Next Page >"])');
+      if (!$nextForm.length) {
         console.error('[DDG] No next page form found');
         break;
       }
 
-      // Get all hidden inputs for next page
-      nextParams = {};
-      nextForm.find('input[type="hidden"]').each((_, input) => {
-        const name = $(input).attr('name');
-        const value = $(input).val();
-        if (name && typeof value === 'string') {
-          nextParams[name] = value;
-        }
-      });
-
-      // Debug log the next page parameters
-      console.error('[DDG] Next page params:', nextParams);
-
-      if (!Object.keys(nextParams).length) {
-        console.error('[DDG] No next page parameters found');
+      // Check for next page button
+      const $nextButton = $nextForm.find('input.navbutton[value="Next Page >"]');
+      if (!$nextButton.length) {
+        console.error('[DDG] No next page button found');
         break;
       }
 
-      currentPage++;
+      // Extract next page parameters from hidden inputs
+      nextPageParams = { q: query, kl: 'us-en' };
+      $nextForm.find('input[type="hidden"]').each((_, input) => {
+        const name = $(input).attr('name');
+        const value = $(input).val();
+        if (name && typeof value === 'string') {
+          nextPageParams[name] = value;
+          console.error(`[DDG] Next page param: ${name}=${value}`);
+        }
+      });
+
+      console.error('\n[DDG] Next page params:', nextPageParams);
     }
 
-    console.error(`[DDG] Search complete. Found ${allResults.size} unique results`);
-    return Array.from(allResults.values()).slice(0, maxResults);
+    const results = Array.from(allResults.values()).slice(0, maxResults);
+    console.error(`\n[DDG] Returning ${results.length} results`);
+    return results;
+
   } catch (error) {
-    console.error('[DDG] Search failed:', error);
+    console.error('\n[DDG] Search failed:', error);
+    if (axios.isAxiosError(error)) {
+      console.error('[DDG] Response data:', error.response?.data);
+    }
     throw error;
   }
 }
